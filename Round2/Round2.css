@@ -1,0 +1,45 @@
+ 
+        #bgcolor{
+            height:100vh;
+            width:100%;
+            background-color: #666699;
+            margin:50px;
+            color: white;
+            
+        }
+
+        #game {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+        }
+        .choice {
+            cursor: pointer;
+/*            padding: 10px;*/
+            margin: 10px;
+/*            transition: background-color 0.3s;*/
+        }
+        .highlight {
+            background-color: grey;
+        }
+        #result {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        #score{
+            float: left;
+        }
+        #score1{
+            float: right;
+
+        }
+        img{
+            margin-top:100px;
+        }
+        h1{
+            margin-top: 150px;
+        }
+ 
+

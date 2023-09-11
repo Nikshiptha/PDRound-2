@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, Paper, Scissors Game</title>
+    <style>
+        #bgcolor{
+            height:100vh;
+            width:100%;
+            background-color: #666699;
+            margin:50px;
+            color: white;
+            
+        }
+
+        #game {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+        }
+        .choice {
+            cursor: pointer;
+
+            margin: 10px;
+
+        }
+        .highlight {
+            border: 5px solid black;
+        }
+        #result {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        #score{
+            float: left;
+        }
+        #score1{
+            float: right;
+
+        }
+        img{
+            margin-top:100px;
+        }
+        h1{
+            font-size: 80px;
+        }
+
+
+
+            </style>
+</head>
+<body>
+    <div id="bgcolor">
+        <div id="score">
+        <h2>You: <span id="playerScore">0</span></h2>
+        </div>
+        <div id="score1">
+        <h2>PC: <span id="computerScore">0</span></h2>
+    </div>
+    <br><br>
+   <center> <h1>Rock  Paper Scissors </h1></center>
+   <br>
+   <br>
+
+    <div id="game">
+        
+        <div class="choice" id="rock" onclick="playGame('rock')">
+            <img src="rock.jpeg" alt="Rock" height=200 width=200>
+        </div>
+        <div class="choice" id="paper" onclick="playGame('paper')">
+            <img src="paper.jpeg" alt="Paper" height=200 width=200>
+        </div>
+        <div class="choice" id="scissors" onclick="playGame('scissors')">
+            <img src="scissors.jpeg" alt="Scissors" height=200 width=200>
+        </div>
+    </div>
+    <p id="result"></p>
+</div>
+
+    <script>
+        let playerScore = 0;
+        let computerScore = 0;
+
+        function computerPlay() {
+            const choices = ['rock', 'paper', 'scissors'];
+            return choices[Math.floor(Math.random() * choices.length)];
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            if (playerSelection === computerSelection) {
+                return 'It\'s a tie!';
+            } else if (
+                (playerSelection === 'rock' && computerSelection === 'scissors') ||
+                (playerSelection === 'paper' && computerSelection === 'rock') ||
+                (playerSelection === 'scissors' && computerSelection === 'paper')
+            ) {
+                playerScore++;
+                return 'You win!';
+            } else {
+                computerScore++;
+                return 'Computer wins!';
+            }
+        }
+
+        function updateScore() {
+            document.getElementById('playerScore').textContent = playerScore;
+            document.getElementById('computerScore').textContent = computerScore;
+        }
+
+        function playGame(playerChoice) {
+            // Remove highlight from all choices
+            const choices = document.querySelectorAll('.choice');
+            choices.forEach(choice => {
+                choice.classList.remove('highlight');
+            });
+
+            // Highlight the clicked choice
+            document.getElementById(playerChoice).classList.add('highlight');
+
+            const computerChoice = computerPlay();
+            const result = playRound(playerChoice, computerChoice);
+            document.getElementById('result').textContent = `Player chose ${playerChoice}, Computer chose ${computerChoice}. ${result}`;
+            
+            updateScore();
+        }
+    </script>
+</body>
+</html>
